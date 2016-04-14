@@ -94,10 +94,10 @@
             if (css) $('head > link').filter(':first').replaceWith('<link rel="stylesheet" href="' + css + '" type="text/css" />');
             else $('head > link').filter(':first').replaceWith(defaultCSS);
         }
-        $(document).ready(function () {
-            var iframe_height = parseInt($('html').height());
-            window.parent.postMessage(iframe_height, 'http://bootsnipp.com');
-        });
+        //$(document).ready(function () {
+        //    var iframe_height = parseInt($('html').height());
+        //    window.parent.postMessage(iframe_height, 'http://bootsnipp.com');
+        //});
 
 
 
@@ -266,21 +266,21 @@
                         <img src="./RcmcLv4.png" class="img-responsive" alt="">
                         <!--<input type="email" name="email" placeholder="Email" required="" class="form-control input-lg">-->
                         <input type="text" id="cpf-cnpj" name="cpf-cnpj" placeholder="CPF/CNPJ" class="form-control input-lg" onkeydown="javascript:return aplica_mascara_cpfcnpj(this,18,event)" onkeyup="javascript:return aplica_mascara_cpfcnpj(this,18,event)" maxlength="18">
-                        <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="" maxlength="18">
+                        <input type="password" class="form-control input-lg" id="password" placeholder="Password" required="">
 
 
                         <div class="pwstrength_viewport_progress"></div>
 
 
-                        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Sign in</button>
+                        <button type="submit" name="go" class="btn btn-lg btn-primary btn-block">Log in</button>
                         <div>
-                            <a href="http://bootsnipp-env.elasticbeanstalk.com/iframe/AVKmB#">Create account</a> or <a href="http://bootsnipp-env.elasticbeanstalk.com/iframe/AVKmB#">reset password</a>
+                            <!--<a href="http://bootsnipp-env.elasticbeanstalk.com/iframe/AVKmB#">Create account</a> or <a href="http://bootsnipp-env.elasticbeanstalk.com/iframe/AVKmB#">reset password</a>-->
                         </div>
 
                     </form>
 
                     <div class="form-links">
-                        <a href="http://bootsnipp-env.elasticbeanstalk.com/iframe/AVKmB#">www.website.com</a>
+                        <!--<a href="http://bootsnipp-env.elasticbeanstalk.com/iframe/AVKmB#">www.website.com</a>-->
                     </div>
                 </section>
             </div>
@@ -289,12 +289,12 @@
 
         </div>
 
-        <p>
+        <!--<p>
             <a href="http://validator.w3.org/check?uri=http%3A%2F%2Fbootsnipp.com%2Fiframe%2FW00op" target="_blank"><small>HTML</small><sup>5</sup></a>
             <br>
             <br>
 
-        </p>
+        </p>-->
 
 
     </div>
@@ -719,7 +719,8 @@
 
                 ui.updateProgressBar = function (options, $el, cssClass, percentage) {
                     var $progressbar = ui.getUIElements(options, $el).$progressbar,
-                        $bar = $progressbar.find(".progress-bar"),
+                        //$bar = $progressbar.find(".progress-bar"),
+                        $bar = $(".progress-bar"),
                         cssPrefix = "progress-";
 
                     if (options.ui.bootstrap2) {
@@ -735,12 +736,14 @@
                 };
 
                 ui.updateVerdict = function (options, $el, text) {
-                    var $verdict = ui.getUIElements(options, $el).$verdict;
+                    //var $verdict = ui.getUIElements(options, $el).$verdict;
+                    var $verdict = $(".password-verdict");
                     $verdict.text(text);
                 };
 
                 ui.updateErrors = function (options, $el) {
-                    var $errors = ui.getUIElements(options, $el).$errors,
+                    //var $errors = ui.getUIElements(options, $el).$errors,
+                    var $errors = $(".error-list"),
                         html = "";
                     $.each(options.instances.errors, function (idx, err) {
                         html += "<li>" + err + "</li>";
@@ -831,6 +834,10 @@
                         cssClass = 2;
                         level = 4;
                         verdictText = options.ui.verdicts[4];
+                    }
+
+                    if (score === -50) {
+                        $(".password-verdict").text("");
                     }
 
                     return [verdictText, cssClass, level];
